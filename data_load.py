@@ -67,7 +67,10 @@ class Normalize(object):
         
         # scale keypoints to be centered around 0 with a range of [-1, 1]
         # mean = 100, sqrt = 50, so, pts should be (pts - 100)/50
-        key_pts_copy = (key_pts_copy - 100)/50.0
+#         key_pts_copy = (key_pts_copy - 100)/50.0
+
+        h, w = image.shape[:2]
+        key_pts_copy = (2 * key_pts_copy / w) - 1
 
 
         return {'image': image_copy, 'keypoints': key_pts_copy}
